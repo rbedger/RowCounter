@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/navigation_projects"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/title_fragment_projects" />
+
+    <item
         android:id="@+id/navigation_settings"
         android:icon="@android:drawable/ic_menu_preferences"
-        android:title="@string/title_activity_settings" />
+        android:title="@string/title_fragment_settings" />
 </menu>

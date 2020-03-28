@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Row Counter</string>
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
-    <string name="title_activity_settings">Settings</string>
+
+    <string name="title_fragment_projects">Projects</string>
+    <string name="title_fragment_settings">Settings</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>

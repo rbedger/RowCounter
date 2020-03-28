@@ -1,23 +1,18 @@
-package com.robenheimer.rowcounter;
+package com.robenheimer.rowcounter.MainActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.robenheimer.rowcounter.MainActivity.dummy.DummyContent;
+import com.robenheimer.rowcounter.R;
 
-public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.robenheimer.RowCounter.MESSAGE";
-
-    private MainActivity that = this;
+public class MainActivity extends AppCompatActivity implements ProjectFragment.OnListFragmentInteractionListener {
     private ActionBar toolbar;
 
     @Override
@@ -27,24 +22,29 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = getSupportActionBar();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
 
-        toolbar.setTitle("Robert");
+        loadFragment(new ProjectFragment());
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            Fragment fragment;
-
             switch (menuItem.getItemId()){
-                case R.id.navigation_settings:
-                    loadFragment(new SettingsActivity.SettingsFragment());
+                case R.id.navigation_projects:
+                    toolbar.setTitle(R.string.title_fragment_projects);
+                    loadFragment(new ProjectFragment());
                     return true;
-            }
 
-            return false;
+                case R.id.navigation_settings:
+                    toolbar.setTitle(R.string.title_fragment_settings);
+                    loadFragment(new SettingsFragment());
+                    return true;
+
+                default:
+                    throw new UnsupportedOperationException();
+            }
         }
     };
 
@@ -56,16 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    /** Called when the user taps the send button */
-    public void sendMessage(View view) {
-        /*
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-        */
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 }
