@@ -5,10 +5,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.robenheimer.rowcounter.DoProjectActivity;
 import com.robenheimer.rowcounter.MainActivity.dummy.DummyContent;
 import com.robenheimer.rowcounter.R;
 
@@ -58,6 +61,12 @@ public class MainActivity extends AppCompatActivity implements ProjectFragment.O
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        Intent intent = new Intent(this, DoProjectActivity.class);
 
+        intent.putExtra(
+            DoProjectActivity.EXTRA_PROJECT_ID,
+            item.id);
+
+        startActivity(intent);
     }
 }
